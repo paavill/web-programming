@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<head>
+    <title>lab4</title>
+    <script src="./main.js"></script>
+    <style>
+        * {
+            margin: 4px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .form-floating {
+            float: left;
+            margin-right: 3px;
+        }
+
+        #mainTableBody {
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+    <link rel="icon" href="./ok.bmp">
+</head>
+
+<body>
+    <h3>Чистяков Павел. гр.9413. 2022 г.</h3>
+    <img src="./task.png" style="min-width: 550px;" width="60%">
+    <img src="./variant.png" style="min-width: 550px;" width="60%">
+    <form id="mainForm">
+        <fieldset style="display:inline;">
+            <legend>Исходные данные</legend>
+            <div style="background-color: rgb(214, 214, 214); border-radius: 3px;">
+                <div class="form-floating">Ширина таблицы:</div>
+                <input id="tableWidth" type="number">
+                <input id="tableBodyId" type="hidden" value="mainTableBody">
+                <input type="button" value="Создать" onclick="generateTable(document.getElementById('mainForm'))">
+            </div>
+            <div style="background-color: rgb(214, 214, 214); border-radius: 3px;">
+                Строки в которых есть число:
+                <br>
+                <input type="radio" name="contact">
+                <label for="contactChoice1">Меньше</label>
+                <input type="radio" name="contact">
+                <label for="contactChoice2">Больше</label>
+                <br>
+                среднего арифметического всех чисел
+                <input type="button" value="Удалить" 
+                onclick="mediumDelete(document.getElementById('mainTableBody'), document.getElementsByName('contact'))">
+            </div>
+            <div style="background-color: rgb(214, 214, 214); border-radius: 3px;">
+                <input type="button" value="Заменить числа" 
+                onclick="replaceNumbers(document.getElementById('mainTableBody'))">
+            </div>
+            <div style="background-color: rgb(214, 214, 214); border-radius: 3px;">
+                Введите минимальную сумму чисел:
+                <input type="number" id="minv">
+                <input type="button" value="Удалить" 
+                onclick="deleteCol(document.getElementById('mainTableBody'), minv.value)">
+            </div>
+        </fieldset>
+    </form>
+</body>
+
+<html>

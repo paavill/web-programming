@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>lab5</title>
+    <script src="./main.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 3px;
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 600px;
+            min-width: 300px;
+            display: block;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        TD,
+        TH {
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px;
+        }
+    </style>
+    <link rel="icon" href="./ok.bmp">
+</head>
+
+<body id="body" onload="onLoad()">
+    <img width="50%" src="./common.png">
+    <img width="50%" src="./task.png">
+    <form id="main-form">
+        <fieldset style="display:inline;">
+            <legend>Init data</legend>
+            min-val:
+            <input type="number" id="min" value="0" min="-1000" max="1000" step="1">
+            max-val:
+            <input type="number" id="max" value="0" min="-1000" max="1000" step="1">
+            <br />
+            Matrix: Height M:
+            <input type="number" id="heightM" value="1" min="1" max="1000" step="1">
+            <br />
+            Width M1:
+            <input type="number" id="widthM1" value="1" min="1" max="1000" step="1">
+            <br />
+            Width M2:
+            <input type="number" id="widthM2" value="1" min="1" max="1000" step="1">
+            <br />
+            <input type="button" value="Generate" onclick="generateAndShow(document.getElementById('main-form'))"
+                style="display: block;">
+            <fieldset style="display:inline;">
+                <legend>Check rows with number</legend>
+                Row in M1 (L1):
+                <input type="number" id="rowNumberInM1" value="0" min="0" max="999" step="1">
+                Row in M2 (L2):
+                <input type="number" id="rowNumberInM2" value="0" min="0" max="999" step="1">
+                <input id="checkButton" disabled type="button" value="Check" onclick="checkVectorsWithNumber(document.getElementById('main-form'))">
+                <input id="checkAllButton" disabled type="button" value="Check all" onclick="checkAllRows()">
+            </fieldset>
+            <br/>
+            <fieldset style="display:inline;">
+                <legend>Vec of lost</legend>
+                <input id="createLostVecButton" disabled type="button" value="Create" onclick="createVecOfLost()">
+                <input id="fillInfButton" disabled type="button" value="Fill with infinity" onclick="fillInf()">
+            </fieldset>
+        </fieldset>
+    </form>
+    <div id="tables" style="display: flex;">
+
+    </div>
+</body>
+
+</html>

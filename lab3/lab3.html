@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<script src="./main.js"></script>
+</head>
+
+<body>
+	<!-- форма для ввода диапазона табулирования функции-->
+	<p>Чистяков Павел, гр. 9413. Вариант 2.</p>
+	<p>Табулирование функции:</p>
+	<img src="./function_image.png">
+	<form>
+		Введите начальное значение X:<br>
+		<input type="number" step="any" id="begXId" value=""><br>
+
+		Введите конечное значение X:<br>
+		<input type="number" step="any" id="endXId" value=""><br>
+
+		Введите начальное значение Y:<br>
+		<input type="number" step="any" id="begYId" value=""><br>
+
+		Введите конечное значение Y:<br>
+		<input type="number" step="any" id="endYId" value=""><br>
+
+		Введите nm1:<br>
+		<input type="number" id="nm1Id" value=""><br>
+
+		Введите nm2:<br>
+		<input type="number" id="nm2Id" value=""><br>
+
+		Введите a:<br>
+		<input type="number" step="any" id="aId" value=""><br>
+
+		Введите шаг:<br>
+		<input type="number" step="any" id="stpId" value=""><br>
+		<br>
+		<input type="button" id="button" value="Табулировать" onclick="tabFunc(begXId.value, endXId.value,
+			 				begYId.value, endYId.value,
+							aId.value, nm1Id.value, nm2Id.value,
+							stpId.value)">
+	</form>
+
+	<!--элемент div для вывода результатов табулирования-->
+	<div id="result">
+	</div>
+</body>
+
+</html>

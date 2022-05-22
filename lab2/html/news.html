@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="RU">
+    <meta charset="UTF-8">
+    <title>Spotify</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="icon" sizes="16x16" type="image/png" href="https://open.scdn.co/cdn/images/favicon16.c498a969.png">
+    <link rel="icon" sizes="32x32" type="image/png" href="https://open.scdn.co/cdn/images/favicon32.8e66b099.png">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+</head>
+
+<body onload="loadAnimation()">
+    <header class="header">
+        <div class="container">
+            <a href="/index.html" class="logo">Spotify</a>
+            <nav>
+                <ul>
+                    <li><a href="/html/news.html">Новости</a></li>
+                    <li><a href="/html/top.html">Топ песен</a></li>
+                    <li><a href="/html/singers.html">Топ исполнителей</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-view">
+        <div class="tner">
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CA4QAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgOEAE"><a
+                                class="WlydOe"
+                                href="https://www.ferra.ru/news/health/naskolko-bezopasno-dlya-zdorovya-slushat-kazhdyi-den-mnogo-muzyki-02-03-2022.htm"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgOEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://www.ferra.ru/news/health/naskolko-bezopasno-dlya-zdorovya-slushat-kazhdyi-den-mnogo-muzyki-02-03-2022.htm&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgOEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="FAkayc">
+                                        <div class="YEMaTe JFSfwc"
+                                            style="background-color: rgb(236, 240, 240); height: 112px; width: 112px; --darkreader-inline-bgcolor:#222426;"
+                                            data-darkreader-inline-bgcolor="">
+                                            <g-img><img id="dimg_23"
+                                                    src="data:image/jpeg;base64,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"
+                                                    class="rISBZc zr758c M4dUYb" height="112" width="112" alt=""
+                                                    data-iml="1646244614425" data-atf="1" data-frt="0"></g-img>
+                                        </div>
+                                    </div>
+                                    <div class="iRPxbe">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_25"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAQlBMVEX/////swD/uAD/36X/tAD/9+H//fX/twD/58H/7sv/36T/wTb/wjr/+uv/79H/78//03v/35z/2ZP/6LP/9N7/7cM/KBevAAAAgElEQVQYlU2Q0RbDIAhDI9Ayterquv//1YGt7e6bOUESQKQSBiKiRCDd4jL49JqVoBsuGgNZIfFfiIKwAEdi421CCUNIe3QKsJ4C1zl2Cam/nMdRxrunWzip/Dj8y7Y/DttopGOs9WDc5pgF8+h8p7XopLn27+qU6OW8vswDWP0faCcEkd/E2wYAAAAASUVORK5CYII="
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-iml="1646244614425" data-atf="1"
+                                                    data-frt="0">
+                                            </g-img><span>Ferra.ru</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">Насколько безопасно для здоровья слушать каждый
+                                            день много музыки</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">Не вредит
+                                            ли здоровью частое прослушивание музыки? И насколько громко её
+                                            можно включать без вреда для слуха?</div><span class="lO8SBd"
+                                            tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>1&nbsp;час
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CAoQAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgKEAE"><a
+                                class="WlydOe"
+                                href="https://kstati.news/news/culture/v-ivanovskoy-oblasti-proydyet-festival-russkoy-narodnoy-muzyki/?utm_source=kstati&amp;utm_medium=trafic&amp;utm_campaign=test"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgKEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://kstati.news/news/culture/v-ivanovskoy-oblasti-proydyet-festival-russkoy-narodnoy-muzyki/%3Futm_source%3Dkstati%26utm_medium%3Dtrafic%26utm_campaign%3Dtest&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgKEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="FAkayc">
+                                        <div class="YEMaTe JFSfwc"
+                                            style="background-color: rgb(17, 17, 17); height: 112px; width: 112px; --darkreader-inline-bgcolor:#0d0e0e;"
+                                            data-darkreader-inline-bgcolor="">
+                                            <g-img><img id="dimg_12"
+                                                    src="data:image/jpeg;base64,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"
+                                                    class="rISBZc zr758c M4dUYb" height="112" width="112" alt=""
+                                                    data-iml="1646244614425" data-atf="1" data-frt="0"></g-img>
+                                        </div>
+                                    </div>
+                                    <div class="iRPxbe">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_19"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADkUlEQVQ4jV2TS2wUZQDH/9/3zTczu7Nst7u0ZZu2UBZYEYG2tELaraYNmhAqciGiJiQ+EjwQDxBDTLSt8SToAT0oNlGqEUIiJeFh4oF6sLS+CG76QLvY17Zot5TdnX3M7OzMfJ5Q4+/++91+JLC9Cw8hhMAslXeXHedIqKIiVhnwhx9kddiu+ych9CZABgHxIyH0X+dhQAjhLRjm6dbtW4++/NyzrCv2OHw+DbFDR/FHYhprNA2y6nVA2VkC8gaAIgAwtaYRQghv0ShdPv7KC4c/O91L9zQ/hmAhBzI/B5paBrL3kcqmkTVMKnPeRiXeBmAIQJmp1Y3IF4wzx199/vB7b74OziXkdD3/4Nq1Ep+bU1qCPuz0cMSqKvFXNoNERociKxHCeBAE1xkqwm0t26KfnHu/j3AuYXFx6e7QlSt7FUWZ8UhS1UI6k703NbXWn8uRmN+D2VweM4YFVfG0grJvGCpq+9469lLrnl07kE6nC59/8eW+bDo9HopEflpS1QG9urqMurpNuYkJVczNK5uowPdmGWVJIYzLglZW+Pfubt4Gu2xhcnLy8urK8q+cMdi2DUIIqBBPsvp6j3zwYHJV10VgdQVRy4Ce0yFc0U6DAf9s0L/GLRomksnFEYlJCAaDoJQCQngAhIRhTLH1678Obd58d63jYt/GDeh8IgZFlqrpU7uiLxIIo1QqwaXEaYhuwYbIRgghAMACcAhADwjpC1Ga4tksDrS34KO3j8Hv8xJaG9Qy6UwmZVkWGhg7EB0f76XJ5KNClgFCHBCSh6aBzc9vtW7dajItC/a6MBbvLSObK6RooWiUFpeWhi3ThP/ChWcCly694x0c/IotLOyELAOyDDI9vYOfOnXezWQ0UlMDuaMdv9yeRDZfHJMopfjtzp0P6yORI+jp4cWREThjY01qPP6D3dBwG0KATk83w7JUQSm0kyeRV1RcHR4TjLEB1t3djXw+v1w2zWK4o+Npt7YWZjwOd2VFoqlUPUml6oXjSLSuDlpfL3z79+Pjc0P47ueJTz0KPysBAOcciUTiA8dxyCOdne/6m5pUa3QUTiIBQgC+JQpvZwcKqhdnBi7i4rcjNzyKfAICIP39/f+cZds2AoFAS0Nj42uhcLjLq2nrSrbtS6d1xMd/x9UbY+7UbHLAq6onCCEF4H8BAHBdF67rwqOq6sJ9vWo4PnNezxcr9YJxk0lsUOF89L87/w2PqojE+wl9CAAAAABJRU5ErkJggg=="
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-iml="1646244614425" data-atf="1"
+                                                    data-frt="0">
+                                            </g-img><span>КСТАТИ.NEWS</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">В Ивановской области пройдёт фестиваль русской
+                                            ...</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">Кстати,
+                                            вход на мероприятие свободный. Смотреть ленту новостей Иваново.
+                                            Тэги: новости иваново, фестиваль, народная музыка, кинешма, народные...
+                                        </div><span class="lO8SBd" tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>9&nbsp;часов
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CA8QAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgPEAE"><a
+                                class="WlydOe" href="https://the-flow.ru/news/opros-dnya-o-chem-seychas-pisat-the-flow"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgPEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://the-flow.ru/news/opros-dnya-o-chem-seychas-pisat-the-flow&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgPEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="FAkayc">
+                                        <div class="YEMaTe JFSfwc"
+                                            style="background-color: rgb(17, 17, 17); height: 112px; width: 112px; --darkreader-inline-bgcolor:#0d0e0e;"
+                                            data-darkreader-inline-bgcolor="">
+                                            <g-img><img id="dimg_27"
+                                                    src="data:image/jpeg;base64,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"
+                                                    class="rISBZc zr758c M4dUYb" height="112" width="112" alt=""
+                                                    data-iml="1646244614439" data-atf="5" data-frt="0"></g-img>
+                                        </div>
+                                    </div>
+                                    <div class="iRPxbe">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_31"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAMFBMVEX///8AAAC/v79/f39AQECvr6/v7++fn5/f398gICBgYGCPj49wcHDPz88QEBBQUFCbn+KzAAAAXklEQVQYlV3PBw7AIAgF0M9w2/b+t63YGgeJEV4CAQA0Az2S+37wDypWMPsBouh9YYBLBpnjgIt8A5kzQNyehglabEadkOvRUvQASzbwFHfA7Q5oy3NcQZ7tOCAs57++UwFf/mxL2gAAAABJRU5ErkJggg=="
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-iml="1646244614439" data-atf="1"
+                                                    data-frt="0">
+                                            </g-img><span>The Flow</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">Опрос дня: о чем сейчас писать The Flow</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">Тема,
+                                            собственно, музыки ушла на десятый план. ... Продолжайте публиковать
+                                            новости о музыке и культуре, просто следите за комментами.</div><span
+                                            class="lO8SBd" tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>1&nbsp;день
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CAMQAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgDEAE"><a
+                                class="WlydOe" href="https://www.cheltv.ru/zheltyj-zvuk-na-vystavke-kandinskogo/"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgDEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://www.cheltv.ru/zheltyj-zvuk-na-vystavke-kandinskogo/&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgDEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="iRPxbe" style="padding-right:0">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_5"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAq1BMVEUAAM4AAKwAANsAAMUAALwAALUAAKYAANAAANQAAOYAAO4AAPIAAPkAAP8AAMoAANUAAOEAAOkAAMDQ0PUAALG5ueUAAJsAAJkAAJDS0u8AAI4AAIYAAKAAAICsrOjd3ffX1/l9fe+cnOXFxfbMzPdgYOpwcNZ6euSwsPK8vPSOjtx8fNdbW9BWVtilpe3Cwuvn5/o+Ptq3t+iSkuS3t99pacY5OcSamtOsrNY9VLibAAAAy0lEQVQYlSWO13aDMBBER4BwA+yoICGaS9wwiR0ix/n/L8sS5m3vuTtngNk8CDabxdtytUrSNEWYYb4mNJEkhQizfzRJSYJIiKaVY7a7BUngUTTsR7I9vB9JguJ80CeRAefLld7AlNLdre/7j8PnhboRM6a7+5jz44u6UcWx77TWw9B+y9k6QF5VXj+ZovJC0kqY3Hj/jIn8yIJWwhrrX21BkU1DK+Gs+32Md9G+eCRClM45a01O5YwTQV2WE6hoAFWjrmuSrJkcxf8AIwAUjXyXi+EAAAAASUVORK5CYII="
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-iml="1646244614440" data-atf="4"
+                                                    data-frt="0">
+                                            </g-img><span>cheltv.ru</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">Желтый звук: на выставке Кандинского в
+                                            Челябинске ...</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">«Желтый
+                                            звук» — синтез музыки, танца, цвета и, неожиданно, психиатрии. ...
+                                            Подпишитесь и читайте новости «Вести Южный Урал» там,...</div><span
+                                            class="lO8SBd" tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>23&nbsp;минуты
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CAIQAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgCEAE"><a
+                                class="WlydOe"
+                                href="https://gtrkkursk.ru/news/23551-kurskim-shkolnikam-rasskazali-razrabotke-igr-otrazhenii-kiberatak"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgCEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://gtrkkursk.ru/news/23551-kurskim-shkolnikam-rasskazali-razrabotke-igr-otrazhenii-kiberatak&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgCEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="FAkayc">
+                                        <div class="YEMaTe JFSfwc"
+                                            style="background-color: rgb(121, 112, 105); height: 112px; width: 112px; --darkreader-inline-bgcolor:#555c60;"
+                                            data-darkreader-inline-bgcolor="">
+                                            <g-img><img id="dimg_1"
+                                                    src="data:image/jpeg;base64,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"
+                                                    class="rISBZc zr758c M4dUYb" height="112" width="112" alt=""
+                                                    data-iml="1646244614440" data-atf="4" data-frt="0"></g-img>
+                                        </div>
+                                    </div>
+                                    <div class="iRPxbe">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_9"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAMFBMVEX///8AALvBwewAAKwAAMcAAN0AAO0AAP0AAJYAAJ/BwfUAANEAAIlMTOyBgfEwMPEVFfuRAAAAcUlEQVQYlVXPWQ7AIAgEUNwoqLX3v21HnDTpfL6wSikp1Tpaa6oXIoSxQQ/8S8RLyblH1qMEYdazwQFnivQbYO6AmAJQwteiKmaAHHN3BeFs7rJhmgVAAI3A9IBpmVk3zgVMLDr3Y7UGWECKFwn+Pf0C4ikFlgI5RC0AAAAASUVORK5CYII="
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-iml="1646244614440" data-atf="4"
+                                                    data-frt="0">
+                                            </g-img><span>ГТРК «Курск»</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">Курским школьникам рассказали о разработке игр
+                                            и отражении кибератак</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">«Ну,
+                                            сейчас в современном мире старую музыку как-то оцифровывают, и она
+                                            по-другому звучит, даже лучше, может быть, старой музыки. Сейчас больше...
+                                        </div><span class="lO8SBd" tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>9&nbsp;часов
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CAgQAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgIEAE"><a
+                                class="WlydOe"
+                                href="https://www.zelao.ru/8/48161-biblioteki-zelenograda-podgotovili-podarok-dlya-lyubiteley-muzyiki/"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgIEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://www.zelao.ru/8/48161-biblioteki-zelenograda-podgotovili-podarok-dlya-lyubiteley-muzyiki/&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgIEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="FAkayc">
+                                        <div class="YEMaTe JFSfwc"
+                                            style="background-color: rgb(17, 17, 17); height: 112px; width: 112px; --darkreader-inline-bgcolor:#0d0e0e;"
+                                            data-darkreader-inline-bgcolor="">
+                                            <g-img><img id="dimg_13"
+                                                    src="data:image/jpeg;base64,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"
+                                                    class="rISBZc zr758c M4dUYb" height="112" width="112" alt=""
+                                                    data-iml="1646244614440" data-atf="4" data-frt="0"></g-img>
+                                        </div>
+                                    </div>
+                                    <div class="iRPxbe">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_21"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAASFBMVEX///8Ap07N6NaDyZvy+vWBy50IqVQVq1g4s2v6/fvK5tPa7uDq+PAAoT1jv4Z5xZQerFy038SMz6UpsGPB5c/T69wApEaU0qoGBVxQAAAAUklEQVQYlWNgwAI4uZjAgBsmwMPLCARsjHwwARZ+ZmZmfgE2QRR9QuzCKHwWRjQFrJgKRNAUcFCsQFgU6HRRuF/E2AWAbheDa+MEOR0IxBmwAQBD+AKCZAk6zgAAAABJRU5ErkJggg=="
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-iml="1646244614440" data-atf="4"
+                                                    data-frt="0">
+                                            </g-img><span>Zelao.ru</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">Библиотеки Зеленограда подготовили подарок для
+                                            ...</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">В
+                                            преддверии главного праздника весны Библиотеки Зеленограда подготовили
+                                            для любителей музыки подарок. 4 марта в 17.00 в Центральной...</div><span
+                                            class="lO8SBd" tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>1&nbsp;день
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CBQQAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgUEAE"><a
+                                class="WlydOe"
+                                href="https://vesti-kaliningrad.ru/pedagogicheskij-debyut-perspektivy-intervyu-s-uchitelem-muzyki-gimnazii-1/"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgUEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://vesti-kaliningrad.ru/pedagogicheskij-debyut-perspektivy-intervyu-s-uchitelem-muzyki-gimnazii-1/&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgUEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="iRPxbe" style="padding-right:0">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_33"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAqFBMVEUAAM4AALoAAK8AAKQAAI0AAMoAANUAAOAAALYAAJ4AAIAAAOYAAOoAAPEAAPUAAPkAAP8AANkAAMDW1vTd3fcAAKoAAJUAALEAAJLb2/AAAIkAAJoAAOgAAMS1tejk5PeCgu6+vumnp+XIyPVkZOrFxetyctZ/f+S5ufHBwfSbm9yEhNdgYNBbW9iysu/Kyuvw8Ps+PtiWluJycsc8PMO+vt2lpdOuruPSL4HaAAAAxklEQVQYlT2O2ZKCMBRELwFkEUdICGERI+Pggrgb/f8/s2OVc95yqm+niWiSZUEwTZLZzzxNU2p9q2AW1sxT4q3/VckMihzOl1pY8pUNUeg43a/OwVr8IUQqDLt+w3G33e1xRpKxbjiM43hcn05ZMCVXyn44W7aXK7opcl0z9B3QN4HfqIkic75LhfIq92lCRdMYc3clUw+h7cqyKM1TV0AsX1hJnueZz7vSL+XwluoaqiwalNsiTnFc/wsGAxEjZE2ESUy9AUk9FBQapypeAAAAAElFTkSuQmCC"
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-iml="1646244614440" data-atf="4"
+                                                    data-frt="0">
+                                            </g-img><span>ГТРК «Калининград</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">«Педагогический дебют»: перспективы. Интервью с
+                                            ...</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">Об этом и
+                                            не только рассказал учитель музыки гимназии №1 Никита Золотухин.
+                                            ГТРК «Калининград» рассказывает Вам новости Калининграда и...</div><span
+                                            class="lO8SBd" tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>2&nbsp;дня
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CBAQAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgQEAE"><a
+                                class="WlydOe" href="https://quote.rbc.ru/news/short_article/620248539a79476ecb39612e"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgQEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://quote.rbc.ru/news/short_article/620248539a79476ecb39612e&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgQEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="FAkayc">
+                                        <div class="YEMaTe JFSfwc"
+                                            style="background-color: rgb(89, 87, 82); height: 112px; width: 112px; --darkreader-inline-bgcolor:#404648;"
+                                            data-darkreader-inline-bgcolor="">
+                                            <g-img><img id="dimg_29"
+                                                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHAAcAMBIgACEQEDEQH/xAAcAAACAgIDAAAAAAAAAAAAAAAGBwECAwUABAj/xABDEAABAwIEAgcDBwgLAAAAAAABAAIDBBEFBhIhBzETQVFhcYGRMkKhFCJSsbLB0RUjM0NioqPhFiY0NkRyc4KSk8L/xAAYAQADAQEAAAAAAAAAAAAAAAAAAQIDBP/EAB4RAQACAwEAAwEAAAAAAAAAAAABAhESMSEDE0Ey/9oADAMBAAIRAxEAPwBnOcAL3t4rSDN+ACqdT/lWn6Rhs476AezXbTfzXR4g1JjyvibAPbgczl1EWSXoyDHt2/ciIyJ8ejIKmCqbrppo5WfSjcHD4LKCL89wvOsL3xSCSF7o5Byew2I81vKLOGP0RHR4jJI1vuTNEg+IuPIqtMDJ2EXKswWSwouJlZHpFdh0M46zDIWEeRBBRFQ8Q8Dnt8odUUt9vzkRcB5tup1k4kWk7nvVuxa+jxjDa+xo66nnJ5BkgJ9Oa7riAbFI2QclDhcqt7sKyH2u4dyQWHJY3RRvHsN8bK/grNFhZAKzOWHmfM1YGyFrjGw8urowELPwl0LY3tu9xJv3I1ze3Tm1xbzdTNv38wtJUtLYmG/vEJ6+JmfcMuec10tbgVVShhbNI21jt8EAYe4PhcR2pj8S8vxDCJ6xj2lzG/R352S2w9umEi1hqVU8kWdtcUKLrRK5OyglQo60CUkAgXAPktlRY/i1ALUmI1EYHIF2oejrhawqA4XtcX7EENcP4k4xTgCqhp6qx5lvRk+Y2+CJKDibhkpvXUlRSuPMtIkaPqPwSoHNSDZLWDiT6w7NWB4hpFPidPrPuSHo3ejrLcts6xBBB5EFebL3Fk9sgv15PwojkISPRxCi1cKiQxnM2zdFfl8mbb1K0lX/AGYXI9srYcUC5uPU2k2vT2H/ACchaOdwYInEnfrSifCmPTA4m7ZWrPBv2gk5TbR+acXFD+6tX17s+0EnIPY8069OWa65dRfZcutEpXEQ5LyrPmiskaJDDSQW6aa19zyaO8/DzF2UeGeXuhLOinMlv0hnff0vb4ILBYZMwIZgxyKklLhTMaZJ3NJvpHUOy5IHqj/iTT4bg2T3UdLBFA+eVjImtAHsuDnH0B9QurR5YzBk/FJ6jLsVPiEdSzo7TnS6MXvvuL+I9F0MdyXm/G5fl2J1FLNUNbZkTXWbGPot2sB9fWgy9XLrsYhQVeG1Jpq6B0Mo30u+sW2IXXQEg7hOnhtVxHJ2HRve0PYZgWk7j88+3wskqOabHDvDIqrK1JO9pLi+UbOtykcovxVetbxNJdjlOSRoNMC0j/MUJtaepqLOJtPI7F6R7dh8mAt4OKEAyZm5B2WWVYMTik7TlWqP7UY/iNSdh2Z3pvcV3WypUf6kQ/iNSghPzVrXqZZbriqea4rSfPC+jbSZLoX2HSVGuZ5HXqcbfuhvoiyyGuHE7ajJGEPYdmxGM+LHOYfi1EykIsoKsoKAXHGCfC48Pp6eZhfiMjtcGjbQARdzj2Hlbr8rhSom4m1Ek2ecSZIdoBFGzbk3omO+txQwqCU6OFh1ZPp+6aUfvk/ekseRTm4Tm+UwOyqk+5Tbhw1/E6RsNZQOeSNUT7NHc7+aDdRe4BsRtzuSjPixDqkwk7AkTgnwMf4oTBbobuSbW5LPESrOBTxZJ/ovLfmZYh/EYlHCfmeaK8/5lr6zDnUNVRmIF7TqDrjZwP3IQo3l0Nz2qqizOpCqpC0QcXBbEmz4JWYYTaSjm6S3ayS5H7zXpjBeesiY+Mu5jgqp3BlFLeKqJ91h5O8nWPhdeg72Pb3pSFlwqLrhSBR8YcEkjrosaiaDC9ginI90g/NPncjyHalwvRuaKiko8ArqmvYx8EURLmPFw4nYNt3mw815vFw1oJuQBc9qoLXTk4RO/qxIOyqf9QSaTf4Ou1Zeqx9GrP2WqbGrxaIEOFE7C82//Wg1ssYiju8ckacWw04fhzi3VaSUWHgEFQRF7IRGGi7Qbna234rLbEiZ43nFXB6ODBJKqIPbIJI221XG72pYwN0x2703OLYtluTb9dH9sJSxewtKnK6nfbsUK45K0pcQW2TIyPxJgw7Do8OzAJ3Np26YKmNuslv0XDtHIHs59pWhKi6AblXxeo459NHg1TPTjnI+ZsZPeG2PxIRTgWdsBxunMsVbHTSt/SQVREb2+uxHeLrz1dRt1gJYMweKGcYcakjwrCZhJQwu1zSt5TP6rdw7esnu3AlRSOSYTsE1ODlXDDg9fHLK1jjWagCero2/glQSmNwrwqLEqDETKwOMc7QCTaw0qbcOOiDigBUYdhzo3B1p3tBab+7/ACQhh1L0ZaXc0ZZ9p/k+HYbFGGtgjmcNIHvFux9NSGdbGMZa9+tct59b0jwX55whmL4U6leXaS4Ouw2NwQfuSsqMqyxPtHI8DvZdPGoAe03F+5aeeha4khgBPatpz+MiakwKtZ+tYfFpCxOwqvaPZjdb9pNyXC7+4F1pMIBabs9Et7HrBRvpa1n+Fc4drSPxVXR1LB8+mlH+0pkVuBSkOdCGm3UbrBHl9zgOkZpPcbhH2WGkF0XFvtRub4tIUCVh5FM2PLjb2uQFL8swk2dpd2XCf2SJoWeoHt9Co1t5XCY0mUITuYI/JqwyZNhd+p9CR96e6dS/1tvzTV4JOBpcXjB3bJC71a8f+VjwXIeGTPd8tp3kW2+d+N0d4Dl7C8CZKMKpBB04b0pDnHVpvbmerU7l2p7ZgsYaniIT+T6O1rdP1j9koMDdextZG3ECLpaGkNrls/PxaUGubpY+w3C5fk/p0fHx/9k="
+                                                    class="rISBZc zr758c M4dUYb" height="112" width="112" alt=""
+                                                    data-iml="1646244614440" data-atf="4" data-frt="0"></g-img>
+                                        </div>
+                                    </div>
+                                    <div class="iRPxbe">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_35"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAFVBMVEUqgoiSz64shYxHcEyU0LGUz7CSz64TNv5HAAAAB3RSTlP+/ToAQ0fpN4qxuwAAADVJREFUGJVdzEEKACAMxMDU2v7/yYKglOye5hI65iuJuZ2LlrGxsX/jGRsb+zamsbGxKRn7AMnbASjiKNnVAAAAAElFTkSuQmCC"
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-iml="1646244614440" data-atf="4"
+                                                    data-frt="0">
+                                            </g-img><span>РБК Инвестиции</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">Apple купила британский стартап для генерации
+                                            музыки с помощью ИИ</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">Apple
+                                            приобрела британский стартап под названием AI Music, который
+                                            использует искусственный интеллект для создания индивидуальной музыки.</div>
+                                        <span class="lO8SBd" tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>3&nbsp;недели
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CAkQAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgJEAE"><a
+                                class="WlydOe"
+                                href="https://www.mk.ru/culture/2022/03/01/rokzvezdy-gotovy-pet-chtoby-lyudi-nezaglyadyvali-vnovosti.html"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgJEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://www.mk.ru/culture/2022/03/01/rokzvezdy-gotovy-pet-chtoby-lyudi-nezaglyadyvali-vnovosti.html&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgJEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="FAkayc">
+                                        <div class="YEMaTe JFSfwc"
+                                            style="background-color: rgb(11, 6, 18); height: 112px; width: 112px; --darkreader-inline-bgcolor:#09050e;"
+                                            data-darkreader-inline-bgcolor="">
+                                            <g-img><img id="dimg_11"
+                                                    src="data:image/jpeg;base64,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"
+                                                    class="rISBZc zr758c M4dUYb" height="112" width="112" alt=""
+                                                    data-atf="4" data-frt="0"></g-img>
+                                        </div>
+                                    </div>
+                                    <div class="iRPxbe">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_17"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAApVBMVEX////c3Nzf39/z9fjZ2NjW2uPn6e3x8PLY3efw8O9gfqUrUIfL0N3b4OhBaJdfeqPd6vTs8/MFM3O2wdSNnrkANXl5iqvxzcnivrzs0dDz5ubQjIrixsbQ1uKXors2X5GKp8YfWJHGYV24PTXTlpXn2dvCUEzbqqmAlbY4YpRUdaLft7iuGwe3Pje9Uk50kLVjibPAd3m5LiSxMCifEwDNdnPWiIbi5uMrAAAAmUlEQVQYlY2PxxKCQBBEG4YgCBgWlSUqQVnFhMr/f5pbWB6wPNCnqXfoNw1VGUSFgkGUP4B0gwBTn/RAg0X21IHrzeY9WABkLxn81XoTcIRRDErSbJv4O5YXZhCVFQzmZkJPhVrs40MIAquRCTp6p+Z84bIA9RWpk4jbvbXyh7R9/bxpUT1f8jI+IM5LQtdJrTb8VBux5Xf+G07YCiiQE8EKAAAAAElFTkSuQmCC"
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-atf="4" data-frt="0"></g-img>
+                                            <span>МК</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">Рок-звезды готовы петь, чтобы люди не
+                                            заглядывали в новости</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">В конце
+                                            прошлой недели многим было совершенно не до музыки, тем не менее
+                                            звучала она ... «Танцы Минус» снова попадают в музыкальные новости.</div>
+                                        <span class="lO8SBd" tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>1&nbsp;день
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+            <div class="data">
+                <g-card class="ftSUBd">
+                    <div>
+                        <div class="CAQQAQ" data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxPQBKAB6BAgEEAE"><a
+                                class="WlydOe"
+                                href="https://asiaplustj.info/ru/news/world/20220302/pevitsa-manizha-viskazalas-protiv-izolyatsii-rossiyan-v-nepoliticheskih-sferah"
+                                data-ved="2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgEEAI"
+                                ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://asiaplustj.info/ru/news/world/20220302/pevitsa-manizha-viskazalas-protiv-izolyatsii-rossiyan-v-nepoliticheskih-sferah&amp;ved=2ahUKEwievaeMg6j2AhWLv4sKHcDaDvUQxfQBKAB6BAgEEAI">
+                                <div class="vJOb1e QH4RGe aIfcHf" role="text">
+                                    <div class="FAkayc">
+                                        <div class="YEMaTe JFSfwc"
+                                            style="background-color: rgb(17, 17, 17); height: 112px; width: 112px; --darkreader-inline-bgcolor:#0d0e0e;"
+                                            data-darkreader-inline-bgcolor="">
+                                            <g-img><img id="dimg_3"
+                                                    src="data:image/jpeg;base64,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"
+                                                    class="rISBZc zr758c M4dUYb" height="112" width="112" alt=""
+                                                    data-atf="4" data-frt="0"></g-img>
+                                        </div>
+                                    </div>
+                                    <div class="iRPxbe">
+                                        <div class="CEMjEf NUnG9d">
+                                            <g-img class="QyR1Ze BA0A6c" style="margin-right:8px"><img id="dimg_7"
+                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAS1BMVEVHcEziHyXjKS3jHiXsaW3kIynjHSPjHybjICXjHyXjHyTjICfkJSriIynjHCPjGiLjHiTlKzHkIyf+9vbueXzjIinwkpTjHiTjFhw0UgQUAAAAF3RSTlMAigm41CDR75rmTV9AKKRv+REwSLB+jpPNDJgAAACYSURBVBiVTc7rDsIwCAXg03alpfdtKnv/JxU0Lp4/kC8EgJ/5L+XEEBEebuVMS+R6gWXlCAQAleTakCR77Ao+opEBRcyqEEPDXBvYoSSn0FeInhTaPuQLUjEU9oPkieFjoIpp0AvuGBRfascB3zS2I6Pojux70hftLNeZDCJ/gSWxThT8wAYVcAMZcO2Hs+Z6oFOyMH/KON/aUQnVbUjEggAAAABJRU5ErkJggg=="
+                                                    style="border-radius:2px 2px 2px 2px" class="rISBZc zr758c"
+                                                    height="16" width="16" alt="" data-atf="4" data-frt="0"></g-img>
+                                            <span>Asia-Plus</span>
+                                        </div>
+                                        <div class="mCBkyc y355M JQe2Ld nDgy9d" aria-level="3" role="heading"
+                                            style="-webkit-line-clamp:3">Певица Манижа высказалась против изоляции
+                                            россиян в ...</div>
+                                        <div class="GI74Re nDgy9d" style="margin-top:8px;-webkit-line-clamp:3">Участница
+                                            от России на конкурсе «Евровидение» певица Манижа обратилась к
+                                            Европейскому вещательному союзу с посланием о том, что музыка...</div><span
+                                            class="lO8SBd" tabindex="-1">.</span>
+                                        <div class="OSrXXb ZE0LJd" style="left:-16px;bottom:16px"><span>8&nbsp;часов
+                                                назад</span></div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </g-card>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

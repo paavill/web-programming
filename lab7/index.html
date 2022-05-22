@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>lab6</title>
+    <script src="./main.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 3px;
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 600px;
+            min-width: 500px;
+            display: block;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+    <link rel="icon" href="./ok.bmp">
+</head>
+
+<body id="body">
+    <img width="50%" src="./common.png">
+    <img width="50%" src="./task.png">
+    <form id="main-form">
+        <fieldset style="display:inline;">
+            <legend>Init data</legend>
+            Persons number:
+            <input id="count" type="number" min="0" max="1000" step="1" value="0">
+            <input type="button" onclick="generate(document.getElementById('main-form'))" value="generate">
+        </fieldset>
+    </form>
+    <div id="tables" style="display: flex;">
+
+    </div>
+</body>
+
+</html>
