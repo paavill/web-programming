@@ -4,6 +4,8 @@
 <head>
     <title>lab6</title>
     <script src="./main.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         * {
             padding: 0;
@@ -16,27 +18,120 @@
             min-width: 500px;
             display: block;
         }
-
-        table {
-            border-collapse: collapse;
-        }
     </style>
     <link rel="icon" href="./ok.bmp">
 </head>
 
 <body id="body">
-    <img width="50%" src="./common.png">
-    <img width="50%" src="./task.png">
-    <form id="main-form">
-        <fieldset style="display:inline;">
-            <legend>Init data</legend>
-            Persons number:
-            <input id="count" type="number" min="0" max="1000" step="1" value="0">
-            <input type="button" onclick="generate(document.getElementById('main-form'))" value="generate">
-        </fieldset>
-    </form>
-    <div id="tables" style="display: flex;">
+    <div class="container">
+        <div class="row">
+            <img width="50%" src="./common.png">
+            <img width="50%" src="./task.png">
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Init data
+                    </div>
+                    <form id="main-form">            
+                        <div class="form-row">
+                            <div class="col">
+                                <label>Person number</label>
+                                <input id="count" type="number" required min="1" max="1000" step="1" value="1">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="button" onclick="generate(document.getElementById('main-form'))"
+                                    class="btn btn-primary" value="Generate">
+                            </div>
+                        </div>
+            
+                    </form>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Filters
+                    </div>
+                    <form id="filter-form">            
+                        <div class="form-row">
+                            <div class="col-sm-1">
+                                <input id="needCityFilter" type="checkbox">
+                            </div>
+                            <div class="col-sm-9">
+                                <label>City</label>
+                                <input id="cityFilterValue" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-sm-1">
+                                <input id="needGenderFilter" type="checkbox">
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Gender</label>
+                                <select id="genderFilterValue" required>
+                                    <option>Man</option>
+                                    <option>Woman</option>  
+                                </select>
+                            </div>
+                        </div>
 
+                        <div class="form-row">
+                            <div class="col-sm-1">
+                                <input id="needBirthFilter" type="checkbox">
+                            </div>
+                            <div class="col-sm-9">
+                                <label>Birth day</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label>From:</label>
+                                <input type="number">
+                            </div>
+                            <div class="col">
+                                <label>To:</label>
+                                <input type="number">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="button" onclick="applyFilters(document.getElementById('filter-form'))"
+                                    class="btn btn-primary" value="Apply">
+                                <input type="button" onclick="clearFilters(document.getElementById('filter-form'))"
+                                    class="btn btn-primary" value="Clear">    
+                            </div>
+                        </div>
+            
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        All persons
+                    </div>
+                    <div id="tables" class="table-responsive">
+            
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Filtered persons
+                    </div>
+                    <div id="filter-tables" class="table-responsive">
+            
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
