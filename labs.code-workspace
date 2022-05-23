@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "lab5"
+		},
+		{
+			"path": "lab6"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "lab6"
+	},
+	"extensions": {
+		"recommendations": [
+			"ritwickdey.LiveServer"
+		]
+	}
+}
