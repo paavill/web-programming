@@ -22,10 +22,24 @@ function createObject(element){
     }
 }
 
+function onLoad(){
+    replaseTableWithId(personArray, 'tables')
+}
+
+function birthFilterCheckBoxClick(){
+    let needBirthFilter = document.getElementById('needBirthFilter').checked
+    document.getElementById('birthFilterLow').required = needBirthFilter
+    document.getElementById('birthFilterHigh').required = needBirthFilter
+}
+
+function cityFilterCheckBoxClick(){
+    let needCityFilter = document.getElementById('needCityFilter').checked
+    document.getElementById('cityFilterValue').required = needCityFilter
+}
+
 async function generate(form){
     deleteElemendById('error-text');
-    let tablesPar = document.getElementById('tables').parentElement
-    deleteElemendById('tables');
+    setDisabledPropButtons(true)
     try{
         let count = getNumberOrThrow(form['count'].value, parseInt)
         while (count > 0) {
@@ -50,18 +64,21 @@ async function generate(form){
             }
             console.log("sleep")
         }
-        let div = document.createElement('div')
-        div.setAttribute('id', 'tables')
-        div.setAttribute('class', 'table-responsive')
-        let objectDom = getArrayAsDOMObject(personArray, 'persons-table')
-        div.appendChild(objectDom)
-        tablesPar.appendChild(div)
+        replaseTableWithId(personArray, 'tables')
+        document.getElementById('persons-count').innerHTML = personArray.length
     }catch(e){
         let div = document.createElement('div')
         div.setAttribute("id", "error-text")
         div.innerHTML = e.toString()
         document.getElementById('body').appendChild(div)
     }
+    setDisabledPropButtons(false)
+}
+
+function setDisabledPropButtons(value){
+    let buttons = document.getElementsByClassName('btn')
+    buttons = Array.from(buttons)
+    buttons.forEach(e => e.disabled = value)
 }
 
 function applyFilters(form){
@@ -69,29 +86,41 @@ function applyFilters(form){
     let needCityFilter = form['needCityFilter'].checked
     let cityFilterValue = form['cityFilterValue'].value
     let needGenderFilter = form['needGenderFilter'].checked
+    let genderFilterValue = form['genderFilterValue'].value
     let needBirthFilter = form['needBirthFilter'].checked
+    let birthFilterLow =  form['birthFilterLow'].value
+    let birthFilterHigh = form['birthFilterHigh'].value
     
-    resultArray = applyFilter(needCityFilter, 'residentialAddress.city', cityFilterValue)
+    resultArray = applyFilter(personArray, needCityFilter, 'residentialAddress.city', cityFilterValue, stringPredicate)
+    resultArray = applyFilter(resultArray, needGenderFilter, 'biometrics.gender', genderFilterValue, stringPredicate)
+    resultArray = applyFilter(resultArray, needBirthFilter, 'biometrics.dateOfBirth', birthFilterLow, biggerDatePredicate)
+    resultArray = applyFilter(resultArray, needBirthFilter, 'biometrics.dateOfBirth', birthFilterHigh, lessDatePredicate)
 
-    let tablesPar = document.getElementById('filter-tables').parentElement
-    deleteElemendById('filter-tables')
-
-    let div = document.createElement('div')
-    div.setAttribute('id', 'filter-tables')
-    div.setAttribute('class', 'table-responsive')
-    let objectDom = getArrayAsDOMObject(resultArray, 'persons-table')
-    div.appendChild(objectDom)
-    tablesPar.appendChild(div)
-
+    replaseTableWithId(resultArray, 'tables')
 }
 
-function applyFilter(need, prop, value){
-    let path = prop.split('.')
+function stringPredicate(first, second){
+    return first.includes(second)
+}
+
+function lessDatePredicate(first, second){
+    return new Date(first).getFullYear() <= new Date(second).getFullYear()
+}
+
+function biggerDatePredicate(first, second){
+    return new Date(first).getFullYear() >= new Date(second).getFullYear()
+}
+
+function applyFilter(array, need, propPath, value, predicat){
     if(need){
-        return personArray.filter(e => {
-            let searched = getPropByPath(path, e, 0);
-            return searched.includes(value)
+        let path = propPath.split('.')
+        return array.filter(e => {
+            let propValue = getPropByPath(path, e, 0);
+            let res = predicat(propValue, value)
+            return res
         })
+    }else{
+        return array
     }
 }
 
@@ -103,8 +132,19 @@ function getPropByPath(path, value, count){
     }
 }
 
-function clearFilters(form){
+function clearFilters(){
+    replaseTableWithId(personArray, 'tables')
+}
 
+function replaseTableWithId(array, id){
+    let tablesPar = document.getElementById(id).parentElement
+    deleteElemendById(id);
+    let div = document.createElement('div')
+    div.setAttribute('id', id)
+    div.setAttribute('class', 'table-responsive')
+    let objectDom = getArrayAsDOMObject(array, 'persons-table')
+    div.appendChild(objectDom)
+    tablesPar.appendChild(div)
 }
 
 function deleteElemendById(id){
