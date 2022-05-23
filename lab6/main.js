@@ -1,6 +1,8 @@
 let personArray = []
 let url = 'https://api.randomdatatools.ru/'
 
+
+
 function createObject(element){
     return {
         fullName:{
@@ -22,8 +24,15 @@ function createObject(element){
     }
 }
 
+
+
+//#region ОБРАБОТЧИКИ СОБЫТИЙ
 function onLoad(){
     replaseTableWithId(personArray, 'tables')
+    let input0 = document.getElementById('inputGroupFile01')
+    input0.addEventListener('change', loadFromJSON);
+    let input1 = document.getElementById('inputGroupFile02')
+    input1.addEventListener('change', unloadToJSON);
 }
 
 function birthFilterCheckBoxClick(){
@@ -37,6 +46,25 @@ function cityFilterCheckBoxClick(){
     document.getElementById('cityFilterValue').required = needCityFilter
 }
 
+function inputChanged(prop, value, biggerInput){
+    biggerInput.setAttribute(prop, value)
+}
+
+function navBarItemClick(element, toShow){
+    let elements = document.getElementsByClassName('nav-link active')
+    elements = Array.from(elements)
+    elements.forEach(e => e.setAttribute('class', 'nav-link'))
+    element.setAttribute('class', element.getAttribute('class') + ' active')
+
+    elements = document.getElementsByClassName('no-hidden')
+    elements = Array.from(elements)
+    elements.forEach(e => e.setAttribute('class', 'hidden'))
+    
+    document.getElementById(toShow).setAttribute('class', 'no-hidden')
+}
+//#endregion
+
+//#region ГЕНЕРАЦИЯ
 async function generate(form){
     deleteElemendById('error-text');
     setDisabledPropButtons(true)
@@ -80,8 +108,40 @@ function setDisabledPropButtons(value){
     buttons = Array.from(buttons)
     buttons.forEach(e => e.disabled = value)
 }
+//#endregion
 
+//#region JSON
+function loadFromJSON(element){
+    let personArrayOld = personArray;
+    try {
+        personArray = JSON.parse(element.value, (key, value) => {
+            if (key === "biometrics.dateOfBirth") {
+                return new Date(value);
+            }
+            return value;
+        });
+        try {
+            replaseTableWithId(personArray, 'tables')
+            document.getElementById('persons-count').innerHTML = personArray.length
+        } catch (e) {
+            window.alert("JSON не соответствует программе")
+            personArray = personArrayOld;
+            replaseTableWithId(personArray, 'tables')
+        }
+    } catch (e) {
+        window.alert("Во время десериализации произошла ошибка")
+    }
+}
+
+function unloadToJSON(){
+    navigator.clipboard.writeText(JSON.stringify(personArray))
+            .then(() => window.alert("JSON скопирован в буфер обмена"));
+}
+//#endregion
+
+//#region ФИЛЬТРЫ
 function applyFilters(form){
+    setDisabledPropButtons(true)
     let resultArray = [];
     let needCityFilter = form['needCityFilter'].checked
     let cityFilterValue = form['cityFilterValue'].value
@@ -97,6 +157,7 @@ function applyFilters(form){
     resultArray = applyFilter(resultArray, needBirthFilter, 'biometrics.dateOfBirth', birthFilterHigh, lessDatePredicate)
 
     replaseTableWithId(resultArray, 'tables')
+    setDisabledPropButtons(false)
 }
 
 function stringPredicate(first, second){
@@ -115,13 +176,18 @@ function applyFilter(array, need, propPath, value, predicat){
     if(need){
         let path = propPath.split('.')
         return array.filter(e => {
-            let propValue = getPropByPath(path, e, 0);
-            let res = predicat(propValue, value)
-            return res
+            let propValue = getPropByPath(path, e, 0)
+            return predicat(propValue, value)
         })
     }else{
         return array
     }
+}
+
+function clearFilters(){
+    setDisabledPropButtons(true)
+    replaseTableWithId(personArray, 'tables')
+    setDisabledPropButtons(false)
 }
 
 function getPropByPath(path, value, count){
@@ -131,11 +197,9 @@ function getPropByPath(path, value, count){
         return getPropByPath(path, value[path[count]], count + 1)
     }
 }
+//#endregion
 
-function clearFilters(){
-    replaseTableWithId(personArray, 'tables')
-}
-
+//#region ИЗМЕНЕНИЕ DOM
 function replaseTableWithId(array, id){
     let tablesPar = document.getElementById(id).parentElement
     deleteElemendById(id);
@@ -144,7 +208,7 @@ function replaseTableWithId(array, id){
     div.setAttribute('class', 'table-responsive')
     let objectDom = getArrayAsDOMObject(array, 'persons-table')
     div.appendChild(objectDom)
-    tablesPar.appendChild(div)
+    tablesPar.appendChild(div);
 }
 
 function deleteElemendById(id){
@@ -154,17 +218,18 @@ function deleteElemendById(id){
         toDel.remove();
     }
 }
+//#endregion
 
+//#region ФОРМИРОВАНИЕ DOM ТАБЛИЦЫ
 function getHeader(){
     let thead = document.createElement('thead')
-    //thead.setAttribute("class", "thead-dark")
     thead.innerHTML = `
         <tr>
             <th rowspan='2' scope="col">#</th>
             <th scope="col" colspan='3'>Full name</th>
             <th scope="col" colspan='2'>Biometrics</th>
             <th scope="col" rowspan='3'>Phone number</th>
-            <th scope="col" colspan='4'>Residential address</th>
+            <th scope="col" colspan='5'>Residential address</th>
         </tr>
         <tr>
             <th scope="col">First name</th>
@@ -217,8 +282,9 @@ function getArrayAsDOMObject(array, id){
     table.appendChild(tbody);
     return table;
 }
+//#endregion
 
-//ВАЛИДАЦИЯ
+//#region ВАЛИДАЦИЯ
 function getNumberOrThrow(value, parse){
     if(!isNaN(parse(value)) && isFinite(value)) {
         return parse(value);
@@ -242,4 +308,4 @@ class ValidationError extends Error {
         return result;
     }
 }
-//----------
+//#endregion

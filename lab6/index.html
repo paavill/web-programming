@@ -18,6 +18,14 @@
             min-width: 500px;
             display: block;
         }
+
+        .hidden{
+            display: none;
+        }
+
+        .no-hidden{
+            display: block;
+        }
     </style>
     <link rel="icon" href="./ok.bmp">
 </head>
@@ -34,21 +42,44 @@
                     <div class="card-header">
                         Init data
                     </div>
-                    <form id="main-form">
-                        <div class="form-row">
-                            <div class="col">
-                                <label>Person number</label>
-                                <input id="count" type="number" required min="1" max="1000" step="1" value="1">
+                    <div class="card-body">
+                        <ul class="nav nav-tabs ">
+                            <li class="nav-item">
+                                <a class="nav-link active" onclick="navBarItemClick(this, 'main-form')">Random</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="navBarItemClick(this, 'json')">JSON</a>
+                            </li>
+                        </ul>
+                        <form id="main-form" class="no-hidden" onsubmit="generate(document.getElementById('main-form')); return false;">
+                            <div class="form-row">
+                                <div class="col">
+                                    <label>Person number</label>
+                                    <input id="count" type="number" required min="1" max="1000" step="1" value="1">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="submit" class="btn btn-primary" value="Generate">
+                                </div>
+                            </div>
+                        </form>
+                        <div id="json" class="hidden">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <input type="button" class="btn btn-primary" value="Load from" onclick="loadFromJSON(document.getElementById('inpJson'))">
+                                </div>
+                                <div class="col-sm">
+                                    <input id="inpJson" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <input type="button" class="btn btn-primary" value="Unload to clipboard" onclick="unloadToJSON()">
+                                </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col">
-                                <input type="submit" onclick="generate(document.getElementById('main-form'))"
-                                    class="btn btn-primary" value="Generate">
-                            </div>
-                        </div>
-
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="col-md">
@@ -56,60 +87,100 @@
                     <div class="card-header">
                         Filters
                     </div>
-                    <form id="filter-form">
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <input id="needCityFilter" type="checkbox" onclick="cityFilterCheckBoxClick()">
-                                <label>City</label>
+                    <div class="card-body">
+                        <form id="filter-form"
+                            onsubmit="applyFilters(document.getElementById('filter-form')); return false;">
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input id="needCityFilter" type="checkbox" onclick="cityFilterCheckBoxClick()">
+                                    <label>City</label>
+                                </div>
+                                <div class="col-sm-1">
+                                    <input id="cityFilterValue">
+                                </div>
                             </div>
-                            <div class="col-sm-1">
-                                <input id="cityFilterValue">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <input id="needGenderFilter" type="checkbox">
-                                <label>Gender</label>
-                            </div>
-                            <div class="col-sm-1">
-                                <select id="genderFilterValue">
-                                    <option value="Мужчина">Man</option>
-                                    <option value="Женщина">Woman</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <input id="needBirthFilter" type="checkbox" onclick="birthFilterCheckBoxClick()">
-                                <label>Birth day</label>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input id="needGenderFilter" type="checkbox">
+                                    <label>Gender</label>
+                                </div>
+                                <div class="col-sm-1">
+                                    <select id="genderFilterValue">
+                                        <option value="Мужчина">Man</option>
+                                        <option value="Женщина">Woman</option>
+                                    </select>
+                                </div>
                             </div>
 
-                        </div>
-                        <div class="form-row">
-                            <div class="col">
-                                <label>From:</label>
-                                <input id="birthFilterLow" type="number" min="0" max="2022" step="1">
-                            </div>
-                            <div class="col">
-                                <label>To:</label>
-                                <input id="birthFilterHigh" type="number" min="0" max="2022" step="1">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col">
-                                <input type="submit" onclick="applyFilters(document.getElementById('filter-form'))"
-                                    class="btn btn-primary" value="Apply">
-                                <input type="button" onclick="clearFilters(document.getElementById('filter-form'))"
-                                    class="btn btn-primary" value="Clear">
-                            </div>
-                        </div>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <input id="needBirthFilter" type="checkbox" onclick="birthFilterCheckBoxClick()">
+                                    <label>Birth day</label>
+                                </div>
 
-                    </form>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label>From:</label>
+                                    <input id="birthFilterLow" type="number" min="0" max="2022" step="1"
+                                        onchange="inputChanged('min', document.getElementById('birthFilterLow').value, document.getElementById('birthFilterHigh'))">
+                                </div>
+                                <div class="col">
+                                    <label>To:</label>
+                                    <input id="birthFilterHigh" type="number" min="0" max="2022" step="1"
+                                        onchange="inputChanged('max', document.getElementById('birthFilterHigh').value, document.getElementById('birthFilterLow'))">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input type="submit" class="btn btn-primary" value="Apply">
+                                    <input type="button" onclick="clearFilters()" class="btn btn-primary" value="Clear">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Delete birth day info
+                    </div>
+                    <div class="card-body">
+                        <form onsubmit="generate(document.getElementById('main-form')); return false;">
+                            <div class="input-group">
+                                <label>Date</label>
+                                <input type="number" min="0" class="ml-2">
+                                <input type="submit" class="btn btn-primary ml-2" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Add naiborhood
+                    </div>
+                    <div class="card-body">
+                        <form onsubmit="generate(document.getElementById('main-form')); return false;">
+                            <div class="input-group">
+                                <label>Number</label>
+                                <input type="number" min="0" class="ml-2">
+                                <label class="ml-2">Naiborhood name</label>
+                                <input type="text" class="ml-2">
+                                <input type="submit" class="btn btn-primary ml-2" value="Add">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col">
                 <h4>Count <span id="persons-count" class="badge badge-success">0</span></h4>
@@ -117,11 +188,13 @@
                     <div class="card-header">
                         Persons
                     </div>
-                    <div id="tables" class="table-responsive">
+                    <div class="card-body">
+                        <div id="tables" class="table-responsive">
 
+                        </div>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </body>
