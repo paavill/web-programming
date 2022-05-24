@@ -29,10 +29,6 @@ function createObject(element){
 //#region ОБРАБОТЧИКИ СОБЫТИЙ
 function onLoad(){
     replaseTableWithId(personArray, 'tables')
-    let input0 = document.getElementById('inputGroupFile01')
-    input0.addEventListener('change', loadFromJSON);
-    let input1 = document.getElementById('inputGroupFile02')
-    input1.addEventListener('change', unloadToJSON);
 }
 
 function birthFilterCheckBoxClick(){
@@ -165,11 +161,15 @@ function stringPredicate(first, second){
 }
 
 function lessDatePredicate(first, second){
-    return new Date(first).getFullYear() <= new Date(second).getFullYear()
+    let splitedDatef = first.split('.')
+    let datef = new Date(splitedDatef[2], parseInt(splitedDatef[1])-1, splitedDatef[0])
+    return datef.getFullYear() <= parseInt(second)
 }
 
 function biggerDatePredicate(first, second){
-    return new Date(first).getFullYear() >= new Date(second).getFullYear()
+    let splitedDatef = first.split('.')
+    let datef = new Date(splitedDatef[2], parseInt(splitedDatef[1])-1, splitedDatef[0])
+    return datef.getFullYear() >= parseInt(second)
 }
 
 function applyFilter(array, need, propPath, value, predicat){
@@ -241,6 +241,7 @@ function getHeader(){
             <th scope="col">Street</th>
             <th scope="col">House</th>
             <th scope="col">Apartment</th>
+            <th scope="col">Naiborhood</th>
         </tr>
     `
     return thead
@@ -276,11 +277,41 @@ function getArrayAsDOMObject(array, id){
         appendTdToTr(ntr, e.residentialAddress.street)
         appendTdToTr(ntr, e.residentialAddress.house)
         appendTdToTr(ntr, e.residentialAddress.apartment)
+        appendTdToTr(ntr, e.residentialAddress.naiborhood)
         tbody.appendChild(ntr)
     })
     table.appendChild(thead);
     table.appendChild(tbody);
     return table;
+}
+
+function addNaiborhood(element){
+    setDisabledPropButtons(true)
+    let phoneNumber = element['phoneNumber'].value
+    let naiborhoodName = element['naiborhoodName'].value
+    personArray.forEach(e => {
+        if(e.phoneNumber.includes(`(${phoneNumber})`)){
+            e.residentialAddress.naiborhood = naiborhoodName
+        }
+    })
+    replaseTableWithId(personArray, 'tables')
+    setDisabledPropButtons(false)
+}
+
+function deleteBirthAfterDate(element){
+    setDisabledPropButtons(true)
+    let year = element['dateInput'].value
+    personArray.forEach(e => {
+        if(e.biometrics.dateOfBirth !== undefined){
+            let splitedDate = e.biometrics.dateOfBirth.split('.')
+            let date = new Date(splitedDate[2], parseInt(splitedDate[1])-1, splitedDate[0])
+            if(date.getFullYear() > parseInt(year)){
+                delete e.biometrics.dateOfBirth
+            }
+        }
+    })
+    replaseTableWithId(personArray, 'tables')
+    setDisabledPropButtons(false)
 }
 //#endregion
 

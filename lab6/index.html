@@ -113,19 +113,19 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <input id="needBirthFilter" type="checkbox" onclick="birthFilterCheckBoxClick()">
                                     <label>Birth day</label>
                                 </div>
 
                             </div>
                             <div class="form-row">
-                                <div class="col">
+                                <div class="col-sm-5">
                                     <label>From:</label>
                                     <input id="birthFilterLow" type="number" min="0" max="2022" step="1"
                                         onchange="inputChanged('min', document.getElementById('birthFilterLow').value, document.getElementById('birthFilterHigh'))">
                                 </div>
-                                <div class="col">
+                                <div class="col-sm-5">
                                     <label>To:</label>
                                     <input id="birthFilterHigh" type="number" min="0" max="2022" step="1"
                                         onchange="inputChanged('max', document.getElementById('birthFilterHigh').value, document.getElementById('birthFilterLow'))">
@@ -150,10 +150,10 @@
                         Delete birth day info
                     </div>
                     <div class="card-body">
-                        <form onsubmit="generate(document.getElementById('main-form')); return false;">
+                        <form onsubmit="deleteBirthAfterDate(this); return false;">
                             <div class="input-group">
-                                <label>Date</label>
-                                <input type="number" min="0" class="ml-2">
+                                <label>Year</label>
+                                <input id="dateInput" required type="number" min="0" max="2022" class="ml-2">
                                 <input type="submit" class="btn btn-primary ml-2" value="Delete">
                             </div>
                         </form>
@@ -168,13 +168,24 @@
                         Add naiborhood
                     </div>
                     <div class="card-body">
-                        <form onsubmit="generate(document.getElementById('main-form')); return false;">
-                            <div class="input-group">
-                                <label>Number</label>
-                                <input type="number" min="0" class="ml-2">
-                                <label class="ml-2">Naiborhood name</label>
-                                <input type="text" class="ml-2">
-                                <input type="submit" class="btn btn-primary ml-2" value="Add">
+                        <form onsubmit="addNaiborhood(this); return false;">
+                            <div class="form-row">
+                                <div class="col-sm-4">
+                                    <label>Number</label>
+                                    <input id="phoneNumber" type="bumber"
+                                    min="100" max="999" step="1"
+                                    placeholder="min: 100; max: 999;"
+                                    required>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label>Naiborhood</label>
+                                    <input id="naiborhoodName" type="text" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                <input type="submit" class="btn btn-primary" value="Add">
+                                </div>
                             </div>
                         </form>
                     </div>
