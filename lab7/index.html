@@ -2,42 +2,223 @@
 <html lang="en">
 
 <head>
-    <title>lab6</title>
+    <title>lab7</title>
     <script src="./main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <style>
-        * {
-            padding: 0;
-            margin: 3px;
-            box-sizing: border-box;
-        }
-
         img {
-            max-width: 600px;
-            min-width: 500px;
+            width: 600px;
             display: block;
         }
 
-        table {
-            border-collapse: collapse;
+        .card {
+            margin: 2px;
+        }
+
+        input {
+            margin: 2px;
         }
     </style>
-    <link rel="icon" href="./ok.bmp">
+    <link rel="icon" href="./icons8-программа-48.png">
 </head>
 
 <body id="body">
-    <img width="50%" src="./common.png">
-    <img width="50%" src="./task.png">
-    <form id="main-form">
-        <fieldset style="display:inline;">
-            <legend>Init data</legend>
-            Persons number:
-            <input id="count" type="number" min="0" max="1000" step="1" value="0">
-            <input type="button" onclick="generate(document.getElementById('main-form'))" value="generate">
-        </fieldset>
-    </form>
-    <div id="tables" style="display: flex;">
-
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="./common.png">
+                <img src="./task.png">
+            </div>
+        </div>
+        <div id="mainRow" class="row row-cols-1 row-cols-md-2">
+            <div class="col ">
+                <div class="card">
+                    <div class="card-header">
+                        Range
+                    </div>
+                    <div class="card-body">
+                        <form id="range-form"
+                            onsubmit="calculate(this, document.getElementById('func-type-form'), document.getElementById('characteristics-form'), document.getElementById('options-form')); return false;">
+                            <div class="row row-cols-1 row-cols-sm-2">
+                                <div class="col-sm-3">
+                                    From:
+                                </div>
+                                <div class="col">
+                                    <input type="number" id="min"
+                                        onchange="inputChanged('min', this.value, document.getElementById('max'))"
+                                        required />
+                                </div>
+                            </div>
+                            <div class="row row-cols-1 row-cols-sm-2">
+                                <div class="col-sm-3">
+                                    To:
+                                </div>
+                                <div class="col">
+                                    <input type="number" id="max"
+                                        onchange="inputChanged('max', this.value, document.getElementById('min'))"
+                                        required />
+                                </div>
+                            </div>
+                            <div class="row row-cols-1 row-cols-sm-2">
+                                <div class="col-sm-3">
+                                    H:
+                                </div>
+                                <div class="col">
+                                    <input type="number" id="h" step="0.00001" min="0.00001" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="submit" value="Calculate" class="btn btn-primary">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Function type
+                    </div>
+                    <div class="card-body">
+                        <form id="func-type-form">
+                            <div class="form-row">
+                                <input checked name="func" type="radio" id="f1" value="f1">
+                                <label for="f1">F1</label>
+                            </div>
+                            <div class="form-row">
+                                <input name="func" type="radio" id="f2" value="f2">
+                                <label for="f2">F2</label>
+                            </div>
+                            <div class="form-row">
+                                <input name="func" type="radio" id="f3" value="f3">
+                                <label for="f3">F3</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col ">
+                <div class="card">
+                    <div class="card-header">
+                        Сharacteristics
+                    </div>
+                    <div class="card-body">
+                        <form id="characteristics-form">
+                            <div class="row">
+                                <div class="col-1">
+                                    <input id="averageCheckBox" type="checkbox">
+                                </div>
+                                <div class="col">
+                                    <label>Average value</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <input id="zeroCheckBox" type="checkbox">
+                                </div>
+                                <div class="col">
+                                    <label>The number of zero values</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <input id="negativeCheckBox" type="checkbox">
+                                </div>
+                                <div class="col">
+                                    <label>The number of negative values</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Options
+                    </div>
+                    <div class="card-body">
+                        <form id="options-form">
+                            <div class="row">
+                                <div class="col-1">
+                                    <input id="memoization" type="checkbox">
+                                </div>
+                                <div class="col">
+                                    <label>Memoization</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <input id="debugging" type="checkbox">
+                                </div>
+                                <div class="col">
+                                    <label>Debugging</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                    <input id="callsNumber" type="checkbox">
+                                </div>
+                                <div class="col">
+                                    <label>Saving the number of calls</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col" id="memoization-col">
+                <div class="card">
+                    <div class="card-header">
+                        Memoization result
+                    </div>
+                    <div class="card-body">
+                        <form id="memoization-form" onsubmit="; return false;">
+                            <div class="row">
+                                <div class="col-2">
+                                    <label>Index:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="number" min="0" id="memIndex">
+                                </div>
+                            </div>
+                            <div class="row row-cols-auto">
+                                <div class="col">
+                                    <input type="submit" value="Get value" class="btn btn-primary">
+                                    <input type="button" value="Get size" class="btn btn-info">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col" id="calls-number-col">
+                <div class="card">
+                    <div class="card-header">
+                        Saving the number of calls result
+                    </div>
+                    <div class="card-body">
+                        <form id="calls-number-form">
+                            <div class="row row-cols-auto">
+                                <div class="col">
+                                    <input type="submit" value="Get calls number" class="btn btn-primary">
+                                    <input type="button" value="Set zero" class="btn btn-info">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
