@@ -20,6 +20,10 @@
         input {
             margin: 2px;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
     <link rel="icon" href="./icons8-программа-48.png">
 </head>
@@ -171,32 +175,32 @@
                     </div>
                 </div>
             </div>
-            <div class="col" id="memoization-col">
+            <div class="col hidden" id="memoization-col">
                 <div class="card">
                     <div class="card-header">
                         Memoization result
                     </div>
                     <div class="card-body">
-                        <form id="memoization-form" onsubmit="; return false;">
+                        <form id="memoization-form" onsubmit="memoizationGetValue(this.memIndex.value); return false;">
                             <div class="row">
                                 <div class="col-2">
                                     <label>Index:</label>
                                 </div>
                                 <div class="col">
-                                    <input type="number" min="0" id="memIndex">
+                                    <input type="number" min="0" id="memIndex" required>
                                 </div>
                             </div>
                             <div class="row row-cols-auto">
                                 <div class="col">
                                     <input type="submit" value="Get value" class="btn btn-primary">
-                                    <input type="button" value="Get size" class="btn btn-info">
+                                    <input type="button" value="Get size" class="btn btn-info" onclick="memoizationGetValuesCount()">
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="col" id="calls-number-col">
+            <div class="col hidden" id="calls-number-col">
                 <div class="card">
                     <div class="card-header">
                         Saving the number of calls result
@@ -205,8 +209,8 @@
                         <form id="calls-number-form">
                             <div class="row row-cols-auto">
                                 <div class="col">
-                                    <input type="submit" value="Get calls number" class="btn btn-primary">
-                                    <input type="button" value="Set zero" class="btn btn-info">
+                                    <input type="button" value="Get calls number" class="btn btn-primary" onclick="callsCountGetCollsNumber()">
+                                    <input type="button" value="Set zero" class="btn btn-info" onclick="setCallsCountZero()">
                                 </div>
                             </div>
                         </form>
