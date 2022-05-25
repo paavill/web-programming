@@ -8,10 +8,13 @@
 		},
 		{
 			"path": "lab7"
+		},
+		{
+			"path": "lab8"
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "lab7"
+		"liveServer.settings.multiRootWorkspaceName": "lab6"
 	},
 	"extensions": {
 		"recommendations": [
