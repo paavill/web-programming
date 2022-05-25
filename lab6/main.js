@@ -61,7 +61,15 @@ function navBarItemClick(element, toShow){
 //#endregion
 
 //#region ГЕНЕРАЦИЯ
+
+function showAllHidden(){
+    let elements = document.getElementsByClassName('hidden')
+    elements = Array.from(elements)
+    elements.forEach(e => e.setAttribute('class', e.getAttribute('class').replace(' hidden', '')))
+}
+
 async function generate(form){
+    showAllHidden()
     deleteElemendById('error-text');
     setDisabledPropButtons(true)
     try{
@@ -108,6 +116,7 @@ function setDisabledPropButtons(value){
 
 //#region JSON
 function loadFromJSON(element){
+    showAllHidden()
     let personArrayOld = personArray;
     try {
         personArray = JSON.parse(element.value, (key, value) => {
@@ -157,7 +166,7 @@ function applyFilters(form){
 }
 
 function stringPredicate(first, second){
-    return first.includes(second)
+    return first.toLowerCase().includes(second.toLowerCase())
 }
 
 function lessDatePredicate(first, second){
@@ -249,7 +258,11 @@ function getHeader(){
 
 function appendTdToTr(tr, tdContent){
     let td = document.createElement("td")
-    td.innerHTML = tdContent
+    if(tdContent !== undefined){
+        td.innerHTML = tdContent
+    } else {
+        td.innerHTML = ""
+    }
     tr.appendChild(td)
 }
 
@@ -260,7 +273,6 @@ function getArrayAsDOMObject(array, id){
     let thead = getHeader();
     let tbody = document.createElement("tbody");
     let tr = document.createElement("tr");
-    let td = document.createElement("td");
     array.forEach((e, index) => {
         let ntr = tr.cloneNode()
         appendTdToTr(ntr, index)    
