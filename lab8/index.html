@@ -3,7 +3,8 @@
 
 <head>
     <title>lab8</title>
-    <script src="./main.js"></script>
+    <script type="module" src="./main.js"></script>
+    <script type="module" src="./calculations.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -24,6 +25,10 @@
         .hidden {
             display: none;
         }
+
+        canvas {
+            border: 3px ridge rgba(211, 220, 50, .6);
+        }
     </style>
     <link rel="icon" href="./icons8-программа-48.png">
 </head>
@@ -37,7 +42,204 @@
             </div>
         </div>
     </div>
-
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Shape creating
+                    </div>
+                    <div class="card-body">
+                        <form id="shape-type-form">
+                            <div class="form-row">
+                                <input checked name="func" type="radio" id="Circle">
+                                <label for="Circle">Circle</label>
+                            </div>
+                            <div class="form-row">
+                                <input name="func" type="radio" id="Rectangle">
+                                <label for="Rectangle">Rectangle</label>
+                            </div>
+                            <div class="form-row">
+                                <input name="func" type="radio" id="Triangle">
+                                <label for="Triangle">Triangle</label>
+                            </div>
+                            <div class="form-row">
+                                <input id="testBtn" class="btn btn-primary" type="button" value="Add shape">
+                            </div>
+                        </form>
+                        <div class="conteiner">
+                            <div class="row row-cols-1">
+                                <div class="col">
+                                    <div class="card" id="circleCard">
+                                        <div class="card-header">
+                                            Circle
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <input id="circleInputX" step="0.000001" type="number" value="0">
+                                                    <label for="circleInputX">X</label>
+                                                    <input id="circleInputY" step="0.000001" type="number" value="0">
+                                                    <label for="circleInputY">Y</label>
+                                                    <input id="circleInputR" step="0.000001" type="number" value="0">
+                                                    <label for="circleInputR">R</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card hidden" id="triangleCard">
+                                        <div class="card-header">
+                                            Triangle
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <input id="triangleInputX1" step="0.000001" type="number" value="0">
+                                                    <label for="triangleInputX1">X1</label>
+                                                    <input id="triangleInputY1" step="0.000001" type="number" value="0">
+                                                    <label for="triangleInputY1">Y1</label>
+                                                    <input id="triangleInputX2" step="0.000001" type="number" value="0">
+                                                    <label for="triangleInputX2">X2</label>
+                                                    <input id="triangleInputY2" step="0.000001" type="number" value="0">
+                                                    <label for="triangleInputY2">Y2</label>
+                                                    <input id="triangleInputX3" step="0.000001" type="number" value="0">
+                                                    <label for="triangleInputX3">X3</label>
+                                                    <input id="triangleInputY3" step="0.000001" type="number" value="0">
+                                                    <label for="triangleInputY3">Y3</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card hidden" id="rectangleCard">
+                                        <div class="card-header">
+                                            Rectangle
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-row">
+                                                    <input id="recInputX1" step="0.000001" type="number" value="0">
+                                                    <label for="recInputX1">X1</label>
+                                                    <input id="recInputY1" step="0.000001" type="number" value="0">
+                                                    <label for="recInputY1">Y1</label>
+                                                    <input id="recInputX2" step="0.000001" type="number" value="0">
+                                                    <label for="recInputX2">X2</label>
+                                                    <input id="recInputY2" step="0.000001" type="number" value="0">
+                                                    <label for="recInputY2">Y2</label>
+                                                    <input id="recInputX3" step="0.000001" type="number" value="0">
+                                                    <label for="recInputX3">X3</label>
+                                                    <input id="recInputY3" step="0.000001" type="number" value="0">
+                                                    <label for="recInputY3">Y3</label>
+                                                    <input id="recInputX3" step="0.000001" type="number" value="0">
+                                                    <label for="recInputX4">X4</label>
+                                                    <input id="recInputY3" step="0.000001" type="number" value="0">
+                                                    <label for="recInputY4">Y4</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Shape control
+                    </div>
+                    <div class="card-body">
+                        <form id="control-form">
+                            <div class="form-row">
+                                <input type="number" min="0" value="0">
+                                <label for="Circle">Circle id</label>
+                            </div>
+                        </form>
+                        <div class="conteiner">
+                            <div class="row row-cols-1">
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Move
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <table class="col-3">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td><input id="testBtn" class="btn btn-primary" type="button"
+                                                                    value="↑">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input id="testBtn" class="btn btn-primary" type="button"
+                                                                    value="←">
+                                                            </td>
+                                                            <td></td>
+                                                            <td><input id="testBtn" class="btn btn-primary" type="button"
+                                                                    value="→">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td><input id="testBtn" class="btn btn-primary" type="button"
+                                                                    value="↓">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <form class="col">
+                                                    <div class="form-row">
+                                                        <input id="moveToX" step="0.000001" type="number" value="0">
+                                                        <label for="moveToX">X</label>
+                                                        <input id="moveToY" step="0.000001" type="number" value="0">
+                                                        <label for="moveToY">Y</label>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <input type="submit" class="btn btn-primary" value="Move">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Rotate
+                                        </div>
+                                        <div class="card-body">
+                                            <form id="foration-form">
+                                                <div class="form-row">
+                                                    <input id="rotateInput" step="0.000001" type="number" min="-360" max="360" value="0">
+                                                    <label for="rotateInput">Degree</label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <input class="btn btn-primary" type="submit" value="Rotate">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <canvas id="canv" width="300" height="300"></canvas>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
