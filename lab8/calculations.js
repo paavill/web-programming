@@ -8,6 +8,15 @@ export function GetZRotationMatrix(degrees){
     return  matrix
 }
 
+export function GetTriangleSquareGeron(vertices){
+    let a = GetVecLength(vertices[0], vertices[1])
+    let b = GetVecLength(vertices[1], vertices[2])
+    let c = GetVecLength(vertices[2], vertices[0])
+    let p = (a + b + c)/2
+    let s = Math.sqrt(p*(p-a)*(p-b)*(p-c)) 
+    return s
+}
+
 export function GetVecLength(start, end){
     return Math.sqrt(Math.pow(start[0] - end[0], 2) + Math.pow(start[1] - end[1], 2))
 }
