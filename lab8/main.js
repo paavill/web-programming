@@ -3,14 +3,13 @@ import * as draw from './drawing.js'
 
 let shapes = []
 let selectedShapeIndex = 0;
-let scaleCoef = 10
 let drawingSpeed = 200
 let drawingIntervalId = null;
 
 OnLoad()
 RadioGroupClickHandler()
 
-let ShapeType = { CIRCLE: 'circle', RECTANGLE: 'rectangle', TRIANGLE: 'triangle' }
+export let ShapeType = { CIRCLE: 'circle', RECTANGLE: 'rectangle', TRIANGLE: 'triangle' }
 
 function BaseObject() {
     let registrationInformation = []
@@ -154,6 +153,11 @@ function Shape(shapeType, vertices) {
                 return Error('Unsupported shape type!')
         }
     }
+
+    this.toString = function toString(){
+        Shape.prototype.Register(this.toString.name, arguments)
+        return "vertices: "+JSON.stringify(_vertices)+" shapeType: "+JSON.stringify(_shapeType)
+    }
     //#endregion
 }
 Shape.prototype = new BaseObject()
@@ -162,7 +166,7 @@ function OnLoad() {
     var canvas = document.getElementById("canv");
     var context = canvas.getContext("2d");
     drawingIntervalId = setInterval(() => {
-        draw.DrawAll(context, canvas)
+        draw.DrawAll(shapes, context, canvas)
     }, drawingSpeed);
 
     let renderStopButton = document.getElementById('renderStopButton')
@@ -180,7 +184,7 @@ function OnLoad() {
     renderStartButton.addEventListener('click', () => {
         if(drawingIntervalId === null){
             drawingIntervalId = setInterval(() => {
-                draw.DrawAll(context, canvas)
+                draw.DrawAll(shapes, context, canvas)
             }, drawingSpeed);
             alert('Ok. Stopped! Id: ' + drawingIntervalId)
         } else {

@@ -1,4 +1,7 @@
-export function DrawAll(context, canvas){
+import {ShapeType} from './main.js'
+let scaleCoef = 10
+
+export function DrawAll(shapes, context, canvas){
     context.clearRect(0, 0, canvas.width, canvas.height)
     context.beginPath()
     DrawNet(canvas, context)
